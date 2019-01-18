@@ -16,7 +16,16 @@ def find_pass():
     username=request.json['username']
     password=request.json['password']
     query=users.find_one({'username': username})
-    return jsonify({"message":"Login succesful","code":"202"}),202
+    if query:
+        result={'username':query['username'],'password':query['password']}
+        if result['password']==password:
+            return jsonify({"message":"Login succesful",
+                        "code":"202"}),202
+        else:
+            return jsonify({"message":"incorrect password","code":"204"}),204
+    else:
+        return jsonify({"message":"No account with this username"})
+
 
 @app.route('/join',methods=['POST'])
 def create_acc():
