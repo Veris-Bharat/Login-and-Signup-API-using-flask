@@ -3,8 +3,8 @@ from flask_pymongo import PyMongo
 
 app=Flask(__name__)
 
-app.config['MONGO_DBNAME']='people'
-app.config['MONGO_URI']='mongodb://bharat:bharat123@ds157864.mlab.com:57864/people'
+app.config['MONGO_DBNAME']=<db.name>
+app.config['MONGO_URI']='mongodb://<db.username>:<db.password><db.dbpath>/<db.dbname>'
 
 mongo=PyMongo(app)
 users=mongo.db.Users
